@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.han.mapper.BbsMapper">
+
+	<select id="read" parameterType="org.han.util.PageMaker"
+		resultType="org.han.vo.BbsVO">
+<![CDATA[
+select   rn, bno, title, userid, cont, ceil(cnt/10) cnt
+from( select 
+      rn, bno, title, userid, cont, count(rn) over() cnt
+      from (
+            select  /*+INDEX_DESC(tbl_bbs pk_bbs) */
+            rownum rn, bno, title, userid, cont
+            from tbl_bbs
+            ]]>
+		${sql}
+<![CDATA[           
+            )
+      where bno > 0 and rn <= (ceil((#{page}/10)) * (10*10) ) + 1
+    )
+where rn > ((#{page}-1)*10) and rn <= (#{page}*10)
+	]]>
+
+	</select>
+</mapper>
