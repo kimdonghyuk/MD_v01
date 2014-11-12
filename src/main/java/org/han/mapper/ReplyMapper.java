@@ -1,13 +1,15 @@
 package org.han.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Select;
 import org.han.vo.ReplyVO;
 
 public interface ReplyMapper {
 
-	@Select(" select bno, userid, cont"
+	@Select(" select rno, bno, userid, cont"
 			+ " from tbl_reply "
 			+ " where bno = #{bno}")
-	public ReplyVO rReply(String bno);
+	public List<ReplyVO> rReply(int bno);
 	
 }

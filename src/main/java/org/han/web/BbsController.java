@@ -1,16 +1,20 @@
 package org.han.web;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.han.service.BbsService;
 import org.han.service.ReplyService;
 import org.han.util.PageMaker;
 import org.han.vo.BbsVO;
+import org.han.vo.ReplyVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/bbs/*")
@@ -18,6 +22,9 @@ public class BbsController {
 	
 	@Inject
 	BbsService service;
+	
+	@Inject
+	ReplyService reply;
 
 	
 	@RequestMapping("/create")
@@ -59,5 +66,12 @@ public class BbsController {
 		return "redirect:view?bno=" + bno.getBno();		// 수정한 후에 해당 page로 이동하여 수정한 모습을 보기위해 redirect 해줌.
 	}
 	
+	
+	@RequestMapping("/reply")
+	public @ResponseBody List<ReplyVO> view(
+			@RequestParam(value = "bno", defaultValue = "") int bno) {
+
+		return reply.rReply(bno);
+	}
 	
 }

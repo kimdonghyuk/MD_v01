@@ -1,5 +1,7 @@
 package org.han.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.han.mapper.ReplyMapper;
@@ -12,7 +14,7 @@ public class ReplyService {
 	@Inject
 	ReplyMapper mapper;
 	
-	public ReplyVO rReply(String bno){
+	public List<ReplyVO> rReply(int bno){
 		return mapper.rReply(bno);
 	}
 }

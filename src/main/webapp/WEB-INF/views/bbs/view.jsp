@@ -8,6 +8,32 @@
 </head>
 <body>
 
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+
+   $(document).ready(function(){
+      var url = "reply/view?bno=" + ${view.bno};
+      var target = $(".bbs");
+         $.getJSON(url, function (data) {
+            var items = [];
+                $.each(data, function (key, val) {
+                    console.log(key, val);
+                    items.push("<ul><li>"+val.cont+"</li></ul>")
+                    /* items.push("<ul id='" + key + "'>"
+                          +("<li class=\"bno\">"+val.bno+"</li>")
+                          +("<li class=\"readtitle\"><a href='read?bno="+val.bno+"'>"+val.title+"</a></li>")
+                          +("<li class=\"writer\">"+val.userid+"</li>")
+                          +("<li class=\"writedate\">"+val.regdate+"</li>")
+                          +("<li class=\"viewcount\">"+val.vcount+"</li>")+"</ul>")   */
+                });
+                $("<div/>", {
+                    html: items.join("")
+                }).appendTo(target);
+            });
+   });
+</script>
+
 <h3> This Page is View </h3> <button type="button"><a href="read"> Back List </a></button> </h2>
 &nbsp; &nbsp;<h1> Á¦¸ñ </h1>
 ${view.title}
@@ -21,7 +47,8 @@ ${view.cont}
 
 <button type="button"><a href="delete?bno=${view.bno}">Delete </a></button>
 
-
+<div class = "bbs">
+</div>
 <br>
 
 </body>

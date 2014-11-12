@@ -2,6 +2,9 @@ package org.han.vo;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class ReplyVO {
 	
 	private Integer rno; 
