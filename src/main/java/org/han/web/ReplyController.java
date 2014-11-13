@@ -27,8 +27,8 @@ public class ReplyController {
 	}
 	
 	@RequestMapping("/create")
-	public @ResponseBody List<ReplyVO> create(@ModelAttribute ReplyVO vo){
-		return service.rCreate(vo);
+	public @ResponseBody void create(@ModelAttribute ReplyVO vo){
+		service.rCreate(vo);
 	}
 	
 	

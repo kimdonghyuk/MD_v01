@@ -13,8 +13,8 @@ public interface ReplyMapper {
 			+ " where bno = #{bno}")
 	public List<ReplyVO> rReply(int bno);
 	
-	@Insert("insert into tbl_reply(rno, bno, userid, cont)"
-			+ " values(seq_reply.nextval, #{bno} , #{userid}, #{cont})")
-	public List<ReplyVO> rCreate(ReplyVO vo);
+	@Insert("insert into tbl_reply(rno, bno, cont)"
+			+ " values(seq_reply.nextval,#{bno}, #{cont})")
+	public void rCreate(ReplyVO vo);
 	
 }
