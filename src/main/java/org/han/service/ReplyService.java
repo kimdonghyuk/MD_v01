@@ -17,4 +17,8 @@ public class ReplyService {
 	public List<ReplyVO> rReply(int bno){
 		return mapper.rReply(bno);
 	}
+	
+	public List<ReplyVO> rCreate(ReplyVO vo){
+		return mapper.rCreate(vo);
+	}
 }

@@ -22,9 +22,18 @@ public class ReplyServiceMapperTest {
 	ReplyVO vo;
 
 	@Test
-	public void test() {
+	public void reatTest() {
 		System.out.println(service.rReply(585));
 
+	}
+	
+	@Test
+	public void createTest(){
+		vo.setBno(603);
+		vo.setCont("¾ÓÅ»ÇÏ¸é ¸íÁøÀÌÇü´ÔÀÌÁÒ");
+		vo.setUserid("han07");
+		service.rCreate(vo);
+		System.out.println(service.rReply(603));
 	}
 
 }

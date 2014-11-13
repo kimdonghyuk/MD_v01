@@ -5,8 +5,10 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.han.service.ReplyService;
+import org.han.vo.BbsVO;
 import org.han.vo.ReplyVO;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,5 +25,12 @@ public class ReplyController {
 			@RequestParam(value = "bno", defaultValue = "1") int bno) {
 		return service.rReply(bno);
 	}
+	
+	@RequestMapping("/create")
+	public @ResponseBody List<ReplyVO> create(@ModelAttribute ReplyVO vo){
+		return service.rCreate(vo);
+	}
+	
+	
 	
 }

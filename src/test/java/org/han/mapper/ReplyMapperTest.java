@@ -29,5 +29,14 @@ public class ReplyMapperTest {
 	public void readTest() {
 		System.out.println(mapper.rReply(585));
 	}
+	
+	@Test
+	public void createTest(){
+		vo.setBno(603);
+		vo.setCont("두기두기두기 당당당");
+		vo.setUserid("han07");
+		mapper.rCreate(vo);
+		System.out.println(mapper.rReply(603));
+	}
 
 }
