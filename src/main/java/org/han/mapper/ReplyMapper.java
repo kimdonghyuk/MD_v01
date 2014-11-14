@@ -28,9 +28,9 @@ public interface ReplyMapper {
 			+ "	where rno=#{rno}")
 	public void rDelete(ReplyVO vo);
 	
-//	@Update("update tbl_reply"
-//			+ "	set cont = '이것이 바로 댓글입니다.'"
-//			+ "	where rno = 163")
-//	public void rUpdate(ReplyVO vo);
+	@Update("update tbl_reply"
+			+ "	set cont = '이것이 바로 댓글입니다.'"
+			+ "	where rno = 163")
+	public void rUpdate(ReplyVO vo);
 	
 }

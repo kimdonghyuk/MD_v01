@@ -26,5 +26,9 @@ public class ReplyService {
 		mapper.rDelete(vo);
 	}
 	
+	public void rUpdate(ReplyVO vo){
+		mapper.rUpdate(vo);
+	}
+	
 
 }

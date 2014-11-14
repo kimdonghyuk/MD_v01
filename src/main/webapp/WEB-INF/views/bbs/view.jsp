@@ -11,7 +11,7 @@
 
 	<h3>This Page is View</h3>
 	
-<!-- read페이지로 돌아감.................................................................................-->	
+<!-- read페이지로 돌아감................................................................................. -->	
 	<button type="button">
 		<a href="read"> Back List </a>
 	</button>
@@ -19,7 +19,7 @@
 	<br>
 	<h1>글 내용</h1>${view.cont}<p></p>
 
-<!-- update, delete 버튼 셋팅 ......................................................................... -->
+<!-- update, delete 버튼 셋팅 .......................................................................... -->
 	<button type="button">
 		<a href="update?bno=${view.bno}">Update </a>
 	</button>
@@ -58,8 +58,8 @@ function list(){
 		$.each(data, function (key, val) {	// for each문을 돌려서 key값을 잡고 val값을 item 배열에 넣어줌.
 			console.log(key, val);
 		content += "<ul><li>"+"[글쓴이 : " + val.userid + " ]" +"[내용 : "+ val.cont + "]" 
-		+ "<input type='button'" + "value='삭제'" + "class='rDelete'" + " onclick='deleteReply(" + val.rno + ");'>" 
-		+ "<input type='button'" + "value='수정'" + "class='rInsert'" + " onclick='insertReply(" + val.rno + ");'>"
+		+ "&nbsp;" + "<input type='button'" + "value='수정'" + "class='rInsert'" + " onclick='updateReply(" + val.rno + ',' + '"' + val.userid + '")'+";'>"
+		+ "&nbsp;" + "<input type='button'" + "value='삭제'" + "class='rDelete'" + " onclick='deleteReply(" + val.rno + ");'>" 
 		+ "</li></ul>";
 		});
 		target.html(content);
@@ -96,10 +96,19 @@ function list(){
 	}
 
 /* 댓글 수정해주는 부분.....................................................................................*/
-/* 	function insertReply(num){
-		alert(num);
-	} */
+ 	function updateReply(num,id){
+		console.log(num);
+		console.log(id);
+		replyUpList();
+		
+	}
 	
+/* 댓글 수정값을 받는 부분..................................................................................*/
+	function replyUpList(){
+/* 		var target = $(".rInsert");
+		var content = "";
+*/
+	}	
    	
 </script>
 </div>

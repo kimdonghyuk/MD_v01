@@ -5,7 +5,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.han.service.ReplyService;
-import org.han.vo.BbsVO;
 import org.han.vo.ReplyVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -36,7 +35,10 @@ public class ReplyController {
 		service.rDelete(vo);
 	}
 	
-	
+	@RequestMapping("/update")
+	public @ResponseBody void update(@ModelAttribute ReplyVO vo){
+		service.rUpdate(vo);
+	}
 	
 	
 }
