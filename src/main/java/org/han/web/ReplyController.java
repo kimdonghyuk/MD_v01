@@ -31,6 +31,12 @@ public class ReplyController {
 		service.rCreate(vo);
 	}
 	
+	@RequestMapping("/delete")
+	public @ResponseBody void delete(@ModelAttribute ReplyVO vo){
+		service.rDelete(vo);
+	}
+	
+	
 	
 	
 }
