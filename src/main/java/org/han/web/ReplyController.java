@@ -35,8 +35,9 @@ public class ReplyController {
 		service.rDelete(vo);
 	}
 	
-	@RequestMapping("/update")
-	public @ResponseBody void update(@ModelAttribute ReplyVO vo){
+	
+	@RequestMapping("/upReply")
+	public @ResponseBody void upReply(@ModelAttribute ReplyVO vo){
 		service.rUpdate(vo);
 	}
 	

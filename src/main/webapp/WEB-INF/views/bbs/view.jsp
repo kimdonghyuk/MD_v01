@@ -39,7 +39,7 @@
 	<div>
 		<div class="bbs">
 	</div>
-
+	
 <!------------------------------------------------------------------------------------------------------->	
 <!-- 스크립트 구문 .......................................................................................-->		
 	<script>
@@ -50,6 +50,7 @@
 	
 /* 댓글 리스트를 갱신해주는 부분...............................................................................*/	
 function list(){
+	console.log("-----------list------------------")
 	var url = "reply/view?bno=" + ${view.bno};	// url을 호출한 뒤 선택한 bno 값을 더해줌.
 	var target = $(".bbs");
 	var content = "";
@@ -57,8 +58,8 @@ function list(){
 		var items = [];							// items라는 이름의 빈배열 생성
 		$.each(data, function (key, val) {	// for each문을 돌려서 key값을 잡고 val값을 item 배열에 넣어줌.
 			console.log(key, val);
-		content += "<ul><li>"+"[글쓴이 : " + val.userid + " ]" +"[내용 : "+ val.cont + "]" 
-		+ "&nbsp;" + "<input type='button'" + "value='수정'" + "class='rInsert'" + " onclick='updateReply(" + val.rno + ',' + '"' + val.userid + '")'+";'>"
+		content += "<ul id = " + "'reply_" + val.rno + "'><li>" + "[글쓴이 : " + val.userid + " ]" +"[내용 : "+ val.cont + "]" 
+		+ "&nbsp;" + "<input type='button'" + "value='수정'" + "class='rInsert'" + " onclick='updateReply(" + val.rno + ',' + '"' + val.userid + '"' + ',' + '"' + val.cont + '")'+";'>"    
 		+ "&nbsp;" + "<input type='button'" + "value='삭제'" + "class='rDelete'" + " onclick='deleteReply(" + val.rno + ");'>" 
 		+ "</li></ul>";
 		});
@@ -96,20 +97,31 @@ function list(){
 	}
 
 /* 댓글 수정해주는 부분.....................................................................................*/
- 	function updateReply(num,id){
-		console.log(num);
-		console.log(id);
-		replyUpList();
-		
+ 	function updateReply(num,id,cont){
+		console.log(num, cont)
+  		var target = document.getElementById('reply_' + num);
+		var content = "";
+		content +=  "<textarea" + " rows='1'" + "id = 'replyText_" + num + "'" + " cols='100'" + ">" + cont + "</textarea>"
+		+ "&nbsp;" + "<input type='button'" + "value='수정'" + "id='replyBtn'"
+		+ " onclick='replyUpList(" + num + ");'>"
+		target.innerHTML = content;
 	}
 	
-/* 댓글 수정값을 받는 부분..................................................................................*/
-	function replyUpList(){
-/* 		var target = $(".rInsert");
-		var content = "";
-*/
-	}	
-   	
+/* 댓글 수정값 받는 부분 .................................................................................. */	
+	function replyUpList(num){
+		var rNum = num
+		var rCont = document.getElementById('replyText_' + num).value;
+		console.log(rNum,rCont);
+		$.post(url='reply/upReply',
+				{cont:rCont, 
+				 rno:rNum},
+				function(data){
+					list();
+				});
+	}
+	
+/*.....................................................................................................*/
+/*.......End Script....................................................................................*/   	
 </script>
 </div>
 <br>

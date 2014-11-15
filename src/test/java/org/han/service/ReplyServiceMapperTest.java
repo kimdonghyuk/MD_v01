@@ -35,5 +35,13 @@ public class ReplyServiceMapperTest {
 		service.rCreate(vo);
 		System.out.println(service.rReply(603));
 	}
+	
+	@Test
+	public void updateTest(){
+		vo.setRno(205);
+		vo.setCont("제발 좀 되라고 ㅡㅡ");
+		service.rUpdate(vo);
+		System.out.println(service.rReply(626));
+	}
 
 }
