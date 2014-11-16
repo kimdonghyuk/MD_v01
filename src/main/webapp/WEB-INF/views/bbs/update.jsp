@@ -17,6 +17,7 @@
 		<br>
 		<h1>글 내용</h1>
 		<textarea name="cont" rows="5" cols="100">${up.cont}</textarea>
+		<li>첨부파일: ${up.contfile}</li>
 		<br> <input type="hidden" name="bno" value="${up.bno}">
 			 <input type="submit">
 	</form>

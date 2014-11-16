@@ -32,7 +32,7 @@
  
          <!-- setting maximum upload size -->
         <beans:property name= "maxUploadSize" value="1000000" />
-        <!-- <beans:property name= "uploadTempDir" value="/Users/zerock/tempdir" /> -->
+<!--         <beans:property name= "uploadTempDir" value="/zzz" /> -->
     </beans:bean >
 
 	<context:component-scan base-package="org.han.web" />

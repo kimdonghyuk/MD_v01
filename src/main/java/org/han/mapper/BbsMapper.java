@@ -3,6 +3,7 @@ package org.han.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.han.util.PageMaker;
@@ -11,8 +12,8 @@ import org.han.vo.BbsVO;
 
 public interface BbsMapper {
 	
-	@Select("insert into tbl_bbs(bno, title, userid, cont) "
-			+ " values(seq_bbs.nextval, #{title}, #{userid}, #{cont})")
+	@Insert("insert into tbl_bbs(bno, title, userid, cont, contfile)"
+			+ "values(seq_bbs.nextval, #{title}, #{userid}, #{cont}, #{contfile})")
 	public void create(BbsVO vo);
 
 //	@Select("select rn, bno, title, userid, cont, ceil(cnt/10) cnt"

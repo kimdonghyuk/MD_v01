@@ -5,6 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
+<style>
+.thumb {
+	float: left;
+	width: 100px;
+	height: 100px;
+}
+</style>
 </head>
 <body>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -26,6 +33,21 @@
 	<button type="button">
 		<a href="delete?bno=${view.bno}">Delete </a>
 	</button>
+	
+<!-- 파일 업로드부분 .................................................................................... -->	
+	<p> <p>
+	<div>
+	<ul id="downloadUL">
+		<!-- file download -->
+	</ul>		
+	<a href="javascript:uploadlist('${view.contfile }')">첨부파일 미리보기</a>	
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 
 <!-- 댓글 등록 부분 ..................................................................................... -->
 	<h1>[댓글 등록란]</h1>
@@ -33,7 +55,6 @@
 		<div> 댓글내용 : <input type = "text" class="rCont">
 		<input type="button" value="등록" class="rCreate" onclick="createReply();">
 		</div>
-	
 <!-- 댓글 뿌려주는 부분................................................................................... -->	
 	<h2>댓글 게시글</h2>
 	<div>
@@ -120,6 +141,29 @@ function list(){
 				});
 	}
 	
+/* 첨부파일 보기..........................................................................................*/	
+	
+   function uploadlist(file){   
+	   console.log(file)
+	   if(file.length ==0){
+		   alert("첨부파일 없음");   
+	   }else{
+	   /* 첨부파일보기 다시 눌렀을 때 중복으로 보여짐 막음 */
+		   var element = document.getElementById("downloadUL");
+		   while (element.firstChild) {
+		     element.removeChild(element.firstChild);
+		   }		   
+      var name = file.split(",");
+      for(var i=0 ; len=i<name.length,len; i++ )
+    	  /* -1은 존재하지 않는다면을 뜻함 */
+         if (name[i].indexOf('.jpg')!= -1){
+         $("#downloadUL").append("<p><a href='/hanBbs/file/down?src="+name[i]+"'><image class='thumb' data-src='"+name[i]+"' src='/hanBbs/file/view/"+name[i]+"'/></a></p>");
+         }else{
+         $("#downloadUL").append("<p><a href='/hanBbs/file/down?src="+name[i]+"'><image class='thumb' data-src='"+name[i]+"' src='/resources/images/iconsets9.jpg'/></a></p>");
+         }
+   	  }
+   }
+
 /*.....................................................................................................*/
 /*.......End Script....................................................................................*/   	
 </script>
