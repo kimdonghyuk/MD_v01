@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%-- <%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%> --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding ="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,12 +13,12 @@
 
 	<form action="updatedata" accept-charset="utf-8" id="ins" method="post">
 		&nbsp; &nbsp;
-		<h1>力格</h1>
+		<h1>鞝滊</h1>
 		<textarea name="title" rows="2" cols="100">${up.title}</textarea>
 		<br>
-		<h1>臂 郴侩</h1>
+		<h1>旮� 雮挫毄</h1>
 		<textarea name="cont" rows="5" cols="100">${up.cont}</textarea>
-		<li>梅何颇老: ${up.contfile}</li>
+		<li>觳秬韺岇澕: ${up.contfile}</li>
 		<br> <input type="hidden" name="bno" value="${up.bno}">
 			 <input type="submit">
 	</form>

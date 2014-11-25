@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%-- <%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%> --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding ="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,17 +22,23 @@
 
 <h2> This page is Create Page. </h2>
 
+<!--Back List reg......................................................................................-->
+	<button type="button">
+		<a href="read"> Back List </a>
+	</button>
+	&nbsp; &nbsp;
+
 <!--Table Context reg..................................................................................-->
 <form action="createdata" accept-charset="utf-8" method="post">
-	<h1> °Ô½Ã±ÛÀ» µî·ÏÇØÁÖ¼¼¿ä</h1>
+	<h1> ê²Œì‹œê¸€ì„ ë“±ë¡í•´ì£¼ì„¸ìš”</h1>
 	<br>
-	<p> ±Û Á¦¸ñ <input type="text" name="title"></p>
-	<p> ±Û¾´ÀÌ <input type="text" name="userid"></p>
-	<p> ±Û ³»¿ë <textarea name="cont" row="3" cols="50"></textarea></p>
-	<ul class="uploadUL"> 
+	<p> ê¸€ ì œëª© <input type="text" name="title"></p>
+	<p> ê¸€ì“´ì´ <input type="text" name="userid"></p>
+	<p> ê¸€ ë‚´ìš© <textarea name="cont" row="3" cols="50"></textarea></p>
+	<ul class="uploadUL">
 		<!-- file upload  -->
 	</ul>
-	<input type="submit" value="±Ûµî·Ï">
+	<input type="submit" value="ê¸€ë“±ë¡">
 </form>
 
 <!--Upload File Reg....................................................................................-->
@@ -40,7 +47,7 @@
 	<input type='file' name='file'><input type='submit' value="UPLOAD">
 </form>
 
-<iframe name="zero" width="0" height="0" >
+<iframe name="zero" width="500" height="300" >
 </iframe>
 
 <!--Java Script .......................................................................................-->
@@ -49,7 +56,7 @@
 
 /*file Upload...........................................................................................*/
  	function updateResult(data){
-	console.log(data);
+		alert(data);
 		$(".uploadUL").append("<input type='hidden' name='contfile' value='"+data.fileName+"'></p>");
 		
 		if(data.suffix == '.jpg'){

@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%-- <%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%> --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding ="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,15 +19,15 @@
 
 	<h3>This Page is View</h3>
 	
-<!-- readÆäÀÌÁö·Î µ¹¾Æ°¨................................................................................. -->	
+<!-- readí˜ì´ì§€ë¡œ ëŒì•„ê°................................................................................. -->	
 	<button type="button">
 		<a href="read"> Back List </a>
 	</button>
-	&nbsp; &nbsp;<h1>Á¦¸ñ</h1>	${view.title}
+	&nbsp; &nbsp;<h1>ì œëª©</h1>	${view.title}
 	<br>
-	<h1>±Û ³»¿ë</h1>${view.cont}<p></p>
+	<h1>ê¸€ ë‚´ìš©</h1>${view.cont}<p></p>
 
-<!-- update, delete ¹öÆ° ¼ÂÆÃ .......................................................................... -->
+<!-- update, delete ë²„íŠ¼ ì…‹íŒ… .......................................................................... -->
 	<button type="button">
 		<a href="update?bno=${view.bno}">Update </a>
 	</button>
@@ -34,67 +35,62 @@
 		<a href="delete?bno=${view.bno}">Delete </a>
 	</button>
 	
-<!-- ÆÄÀÏ ¾÷·ÎµåºÎºĞ .................................................................................... -->	
+<!-- íŒŒì¼ ì—…ë¡œë“œë¶€ë¶„ .................................................................................... -->	
 	<p> <p>
 	<div>
 	<ul id="downloadUL">
 		<!-- file download -->
 	</ul>		
-	<a href="javascript:uploadlist('${view.contfile }')">Ã·ºÎÆÄÀÏ ¹Ì¸®º¸±â</a>	
+	<a href="javascript:uploadlist('${view.contfile }')">ì²¨ë¶€íŒŒì¼ ë¯¸ë¦¬ë³´ê¸°</a>	
 	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	<br> <br> <br> <br> <br> <br> <br> <br>
 
-<!-- ´ñ±Û µî·Ï ºÎºĞ ..................................................................................... -->
-	<h1>[´ñ±Û µî·Ï¶õ]</h1>
-		<div> °Ô½ÃÀÚ : <input type="text" class="rUser"></div>
-		<div> ´ñ±Û³»¿ë : <input type = "text" class="rCont">
-		<input type="button" value="µî·Ï" class="rCreate" onclick="createReply();">
+<!-- ëŒ“ê¸€ ë“±ë¡ ë¶€ë¶„ ..................................................................................... -->
+	<h1>[ëŒ“ê¸€ ë“±ë¡ë€]</h1>
+		<div> ê²Œì‹œì : <input type="text" class="rUser"></div>
+		<div> ëŒ“ê¸€ë‚´ìš© : <input type = "text" class="rCont">
+		<input type="button" value="ë“±ë¡" class="rCreate" onclick="createReply();">
 		</div>
-<!-- ´ñ±Û »Ñ·ÁÁÖ´Â ºÎºĞ................................................................................... -->	
-	<h2>´ñ±Û °Ô½Ã±Û</h2>
+<!-- ëŒ“ê¸€ ë¿Œë ¤ì£¼ëŠ” ë¶€ë¶„................................................................................... -->	
+	<h2>ëŒ“ê¸€ ê²Œì‹œê¸€</h2>
 	<div>
 		<div class="bbs">
 	</div>
 	
 <!------------------------------------------------------------------------------------------------------->	
-<!-- ½ºÅ©¸³Æ® ±¸¹® .......................................................................................-->		
+<!-- ìŠ¤í¬ë¦½íŠ¸ êµ¬ë¬¸ .......................................................................................-->		
 	<script>
 
-/* ´ñ±Û ¸®½ºÆ®¸¦ ¸¸µé¾îÁÖ´Â ºÎºĞ...............................................................................*/	
+/* ëŒ“ê¸€ ë¦¬ìŠ¤íŠ¸ë¥¼ ë§Œë“¤ì–´ì£¼ëŠ” ë¶€ë¶„...............................................................................*/	
    	$(document).ready(list());
   	
 	
-/* ´ñ±Û ¸®½ºÆ®¸¦ °»½ÅÇØÁÖ´Â ºÎºĞ...............................................................................*/	
+/* ëŒ“ê¸€ ë¦¬ìŠ¤íŠ¸ë¥¼ ê°±ì‹ í•´ì£¼ëŠ” ë¶€ë¶„...............................................................................*/	
 function list(){
 	console.log("-----------list------------------")
-	var url = "reply/view?bno=" + ${view.bno};	// urlÀ» È£ÃâÇÑ µÚ ¼±ÅÃÇÑ bno °ªÀ» ´õÇØÁÜ.
+	var url = "reply/view?bno=" + ${view.bno};	// urlì„ í˜¸ì¶œí•œ ë’¤ ì„ íƒí•œ bno ê°’ì„ ë”í•´ì¤Œ.
 	var target = $(".bbs");
 	var content = "";
-	$.getJSON(url, function (data) {			// ÇØ´ç url¿¡ ´ã°ÜÁ®ÀÖ´Â Jsondata¸¦ parameter°ªÀ¸·Î ¹ŞÀ½.
-		var items = [];							// items¶ó´Â ÀÌ¸§ÀÇ ºó¹è¿­ »ı¼º
-		$.each(data, function (key, val) {	// for each¹®À» µ¹·Á¼­ key°ªÀ» Àâ°í val°ªÀ» item ¹è¿­¿¡ ³Ö¾îÁÜ.
+	$.getJSON(url, function (data) {			// í•´ë‹¹ urlì— ë‹´ê²¨ì ¸ìˆëŠ” Jsondataë¥¼ parameterê°’ìœ¼ë¡œ ë°›ìŒ.
+		var items = [];							// itemsë¼ëŠ” ì´ë¦„ì˜ ë¹ˆë°°ì—´ ìƒì„±
+		$.each(data, function (key, val) {	// for eachë¬¸ì„ ëŒë ¤ì„œ keyê°’ì„ ì¡ê³  valê°’ì„ item ë°°ì—´ì— ë„£ì–´ì¤Œ.
 			console.log(key, val);
-		content += "<ul id = " + "'reply_" + val.rno + "'><li>" + "[±Û¾´ÀÌ : " + val.userid + " ]" +"[³»¿ë : "+ val.cont + "]" 
-		+ "&nbsp;" + "<input type='button'" + "value='¼öÁ¤'" + "class='rInsert'" + " onclick='updateReply(" + val.rno + ',' + '"' + val.userid + '"' + ',' + '"' + val.cont + '")'+";'>"    
-		+ "&nbsp;" + "<input type='button'" + "value='»èÁ¦'" + "class='rDelete'" + " onclick='deleteReply(" + val.rno + ");'>" 
+		content += "<ul id = " + "'reply_" + val.rno + "'><li>" + "[ê¸€ì“´ì´ : " + val.userid + " ]" +"[ë‚´ìš© : "+ val.cont + "]" 
+		+ "&nbsp;" + "<input type='button'" + "value='ìˆ˜ì •'" + "class='rInsert'" + " onclick='updateReply(" + val.rno + ',' + '"' + val.userid + '"' + ',' + '"' + val.cont + '")'+";'>"    
+		+ "&nbsp;" + "<input type='button'" + "value='ì‚­ì œ'" + "class='rDelete'" + " onclick='deleteReply(" + val.rno + ");'>" 
 		+ "</li></ul>";
 		});
 		target.html(content);
 		});
 	};
    	
-/* ´ñ±Û Create¸¦ ÇØÁÖ´Â ºÎºĞ ................................................................................*/   	
+/* ëŒ“ê¸€ Createë¥¼ í•´ì£¼ëŠ” ë¶€ë¶„ ................................................................................*/   	
    	function createReply(){
    		if($(".rCont").val()==""){
-   			alert("³»¿ëÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä");
+   			alert("ë‚´ìš©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”");
    			$(".rCont").focus();return;
    			}
-   		// ¹öÆ° Áßº¹ Å¬¸¯ ¹æÁö
+   		// ë²„íŠ¼ ì¤‘ë³µ í´ë¦­ ë°©ì§€
    		$(".rCreate").attr('disabled','disabled');
    		$.post(url='reply/create',
    				{cont:$(".rCont").val(),
@@ -108,7 +104,7 @@ function list(){
 		});		
 	}
  
-/* ´ñ±Û »èÁ¦ÇØÁÖ´Â ºÎºĞ.....................................................................................*/
+/* ëŒ“ê¸€ ì‚­ì œí•´ì£¼ëŠ” ë¶€ë¶„.....................................................................................*/
 	function deleteReply(num){
 		$.post(url='reply/delete',
 				{rno:num},
@@ -117,18 +113,18 @@ function list(){
 				});
 	}
 
-/* ´ñ±Û ¼öÁ¤ÇØÁÖ´Â ºÎºĞ.....................................................................................*/
+/* ëŒ“ê¸€ ìˆ˜ì •í•´ì£¼ëŠ” ë¶€ë¶„.....................................................................................*/
  	function updateReply(num,id,cont){
 		console.log(num, cont)
   		var target = document.getElementById('reply_' + num);
 		var content = "";
 		content +=  "<textarea" + " rows='1'" + "id = 'replyText_" + num + "'" + " cols='100'" + ">" + cont + "</textarea>"
-		+ "&nbsp;" + "<input type='button'" + "value='¼öÁ¤'" + "id='replyBtn'"
+		+ "&nbsp;" + "<input type='button'" + "value='ìˆ˜ì •'" + "id='replyBtn'"
 		+ " onclick='replyUpList(" + num + ");'>"
 		target.innerHTML = content;
 	}
 	
-/* ´ñ±Û ¼öÁ¤°ª ¹Ş´Â ºÎºĞ .................................................................................. */	
+/* ëŒ“ê¸€ ìˆ˜ì •ê°’ ë°›ëŠ” ë¶€ë¶„ .................................................................................. */	
 	function replyUpList(num){
 		var rNum = num
 		var rCont = document.getElementById('replyText_' + num).value;
@@ -141,21 +137,21 @@ function list(){
 				});
 	}
 	
-/* Ã·ºÎÆÄÀÏ º¸±â..........................................................................................*/	
+/* ì²¨ë¶€íŒŒì¼ ë³´ê¸°..........................................................................................*/	
 	
    function uploadlist(file){   
 	   console.log(file)
-	   if(file.length ==0){
-		   alert("Ã·ºÎÆÄÀÏ ¾øÀ½");   
+	   if(file == "null"){
+		   alert("ì²¨ë¶€íŒŒì¼ ì—†ìŒ");   
 	   }else{
-	   /* Ã·ºÎÆÄÀÏº¸±â ´Ù½Ã ´­·¶À» ¶§ Áßº¹À¸·Î º¸¿©Áü ¸·À½ */
+	   /* ì²¨ë¶€íŒŒì¼ë³´ê¸° ë‹¤ì‹œ ëˆŒë €ì„ ë•Œ ì¤‘ë³µìœ¼ë¡œ ë³´ì—¬ì§ ë§‰ìŒ */
 		   var element = document.getElementById("downloadUL");
 		   while (element.firstChild) {
 		     element.removeChild(element.firstChild);
 		   }		   
       var name = file.split(",");
       for(var i=0 ; len=i<name.length,len; i++ )
-    	  /* -1Àº Á¸ÀçÇÏÁö ¾Ê´Â´Ù¸éÀ» ¶æÇÔ */
+    	  /* -1ì€ ì¡´ì¬í•˜ì§€ ì•ŠëŠ”ë‹¤ë©´ì„ ëœ»í•¨ */
          if (name[i].indexOf('.jpg')!= -1){
          $("#downloadUL").append("<p><a href='/hanBbs/file/down?src="+name[i]+"'><image class='thumb' data-src='"+name[i]+"' src='/hanBbs/file/view/"+name[i]+"'/></a></p>");
          }else{

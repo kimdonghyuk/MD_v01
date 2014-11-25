@@ -94,7 +94,7 @@ public class AttachController {
 	}
 
 	// "application/octest-stream" 마임타입 상관없이 무조건 다운로드 받기
-	@RequestMapping(value = "/down", produces = { "application/octest-stream" })
+	@RequestMapping(value = "/down", produces = { "application/octet-stream" })
 	public @ResponseBody byte[] downFile(
 			@RequestParam(value = "src", defaultValue = "") String path,
 			HttpServletResponse response) throws Exception {

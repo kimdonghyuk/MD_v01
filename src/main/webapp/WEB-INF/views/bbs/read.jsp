@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%-- <%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%> --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding ="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -9,20 +10,22 @@
 </head>
 <body>
 
-	<h1>This page is board</h1>
+	<h1>This page is board  	
+		<button type="button">
+			<a href="create"> ê¸€ì“°ê¸° </a>
+		</button>
+	</h1>
 
-	<button type="button">
-		<a href="create"> ±Û¾²±â </a>
-	</button>
+
 
 	<c:forEach items="${read}" var="read">
-		<li>[±Û¹øÈ£ : ${read.bno}] <a href="view?bno=${read.bno}"> [±ÛÁ¦¸ñ : ${read.title}]</a> 
-		[Á¶È¸¼ö : ${read.vcount}]</li>
+		<li>[ê¸€ë²ˆí˜¸ : ${read.bno}] <a href="view?bno=${read.bno}"> [ê¸€ì œëª© : ${read.title}]</a> 
+		[ê²Œì‹œì : ${read.userid}]</li>
 	</c:forEach>
 
 
 	<c:if test="${pageMaker.first - 1 > 0}">
-		<a href="javascript:_goPage(${pageMaker.first}-10)">[ÀÌÀü ÆäÀÌÁö]</a>
+		<a href="javascript:_goPage(${pageMaker.first}-10)">[ì´ì „ í˜ì´ì§€]</a>
 	</c:if>
 
 	<c:forEach begin="${pageMaker.first}" end="${pageMaker.last}" var="idx">
@@ -32,29 +35,36 @@
 	</c:forEach>
 	
 	<c:if test="${pageMaker.cnt > pageMaker.last}">
-		<a href="javascript:_goPage(${pageMaker.last}+1)">[´ÙÀ½ÆäÀÌÁö]</a>
+		<a href="javascript:_goPage(${pageMaker.last}+1)">[ë‹¤ìŒí˜ì´ì§€]</a>
 	</c:if>
 
-
-	<br> ${pageMaker}
 
 	<form method='get' accept-charset="utf-8" name='bbsForm'>
 		<input type='hidden' name='bno'>
 		<input type='hidden' name='page' value='${pageMaker.page}'>
-		<input type='text' name='keyword' value='${pageMaker.keyword }'>
-		<input type='checkbox' name='types' value="t" ${pageMaker.checked("t") }>Á¦¸ñ
-		<input type='checkbox' name='types' value="w" ${pageMaker.checked("w") }>±Û¾´ÀÌ
-		<input type='checkbox' name='types' value="c" ${pageMaker.checked("c") }>³»¿ë
-		<button onclick="javascript:_goPage(1);">Search</button>
-	</form>		
+		<input type='text' id='searchText' name='keyword' value='${pageMaker.keyword }'>
+		<input type='checkbox' name='types' value="t" ${pageMaker.checked("t") }>ì œëª©
+		<input type='checkbox' name='types' value="w" ${pageMaker.checked("w") }>ê¸€ì“´ì´
+		<input type='checkbox' name='types' value="c" ${pageMaker.checked("c") }>ë‚´ìš©
+		<button onclick="javascript:_goSearch(1);">Search</button>
+	</form>
 
 	<br>
 	<br>
 	<br>
-
 
 	<script>
 		function _goPage(num) {
+			document.bbsForm.page.value = num;
+			document.bbsForm.submit();
+			}
+		
+		function _goSearch(num){
+			var sText = document.getElementById('searchText').value;
+			if(sText == ""){
+				alert("ê²€ìƒ‰ì–´ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
+				return ;
+			}
 			document.bbsForm.page.value = num;
 			document.bbsForm.submit();
 		}

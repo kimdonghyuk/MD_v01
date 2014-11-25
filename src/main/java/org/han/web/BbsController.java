@@ -33,6 +33,9 @@ public class BbsController {
 	
 	@RequestMapping("/createdata")
 	public String createdata(@ModelAttribute BbsVO vo){
+		if (vo.getContfile() == null){
+			vo.setContfile("null");
+		}
 		service.create(vo);
 		return "redirect:read";
 	}
